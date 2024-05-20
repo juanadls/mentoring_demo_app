@@ -16,8 +16,4 @@ class Recipe {
       image: json["image"],
     );
   }
-
-  dynamic toJson() {
-    return {"uri": uri, "label": label, "image": image};
-  }
 }
