@@ -1,32 +1,26 @@
 import 'package:flutter/material.dart';
-import '../../data/services/network_service.dart';
-import '../../data/services/service_constants/service_contants.dart';
-import '../../domain/manager/recipe_manager.dart';
+import '../../domain/repositories/recipe_repository_impl.dart';
 
 class Home extends StatelessWidget {
-  const Home({super.key});
+  Home({super.key});
+
+  final RecipeRepositoryImpl _implementation = RecipeRepositoryImpl();
 
   @override
   Widget build(BuildContext context) {
-    final RecipeManager manager = RecipeManager(
-      service: NetworkService(
-        ServiceContants.getEndpoint,
-      ),
-    );
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Recipe App"),
+        title: const Text("Recipe App Sample"),
       ),
-      body: Column(
-        children: [
-          ElevatedButton(
-              onPressed: () {
-                manager.getListRecipes();
-              },
-              child: const Text(
-                "Hit Api",
-              ))
-        ],
+      body: FutureBuilder(
+        future: _implementation.obtainlist(),
+        builder: (BuildContext context, AsyncSnapshot snapshop) {
+          if (snapshop.connectionState == snapshop.connectionState) {
+            return ListView();
+          } else {
+            return const CircularProgressIndicator();
+          }
+        },
       ),
     );
   }

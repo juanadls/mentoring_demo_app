@@ -1,8 +1,8 @@
 import 'recipe.dart';
 
 class ApiResponseResult {
-  factory ApiResponseResult.success(Recipe recipe) {
-    return ApiResponseResult.success(recipe);
+  factory ApiResponseResult.success(List<Recipe> recipes) {
+    return ApiResponseResult.success(recipes);
   }
 
   factory ApiResponseResult.error(Exception error) {
