@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mentoring_demo_app/presentation/pages/home.dart';
+import 'presentation/pages/home.dart';
 
 void main() {
   runApp(const MyApp());

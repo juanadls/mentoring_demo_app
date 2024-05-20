@@ -1,7 +1,7 @@
-import 'package:mentoring_demo_app/data/models/api_response_result.dart';
-import 'package:mentoring_demo_app/data/models/recipe.dart';
-import 'package:mentoring_demo_app/data/services/network_service.dart';
-import 'package:mentoring_demo_app/data/services/service_constants/service_contants.dart';
+import '../../data/models/api_response_result.dart';
+import '../../data/models/recipe.dart';
+import '../../data/services/network_service.dart';
+import '../../data/services/service_constants/service_contants.dart';
 
 class RecipeManager {
   final NetworkService service;

@@ -1,7 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
-import 'package:mentoring_demo_app/data/services/service_constants/service_contants.dart';
+import 'service_constants/service_contants.dart';
 
 class NetworkService {
   final String baseUrl;

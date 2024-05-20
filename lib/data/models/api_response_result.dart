@@ -1,4 +1,4 @@
-import 'package:mentoring_demo_app/data/models/recipe.dart';
+import 'recipe.dart';
 
 class ApiResponseResult {
   factory ApiResponseResult.success(Recipe recipe) {
