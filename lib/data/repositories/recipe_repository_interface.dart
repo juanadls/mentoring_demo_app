@@ -3,6 +3,6 @@ import '../models/recipe.dart';
 
 abstract class RecipeRespositoryInterface {
   Future<ApiResponseResult> obtainlist() async {
-    return ApiResponseResult.success(Recipe());
+    return ApiResponseResult.success(Recipe(label: 'label', img: 'img'));
   }
 }

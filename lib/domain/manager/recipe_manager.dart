@@ -12,10 +12,12 @@ class RecipeManager {
 
   Future<ApiResponseResult> getListRecipes() async {
     final response = await service.getRequest(ServiceContants.getEndpoint);
+
     if (response.statusCode == 200) {
-      return ApiResponseResult.success(Recipe());
+      return ApiResponseResult.success(Recipe(label: 'label', img: 'img'));
     } else {
-      throw Exception('Failed to load recipes');
+      ApiResponseResult.error(Exception('Failed to load recipes'));
     }
+    return ApiResponseResult.success(Recipe(label: 'label', img: 'img'));
   }
 }
