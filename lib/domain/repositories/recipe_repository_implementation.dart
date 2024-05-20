@@ -10,6 +10,12 @@ class RecipeRepositoryImplementation implements RecipeRespositoryInterface {
   @override
   Future<ApiResponseResult> obtainlist() async {
     await manager.getListRecipes();
-    return ApiResponseResult.success(Recipe(label: 'label', img: 'img'));
+    return ApiResponseResult.success(
+      Recipe(
+        uri: "",
+        label: "",
+        image: "",
+      ),
+    );
   }
 }

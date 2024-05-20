@@ -14,10 +14,22 @@ class RecipeManager {
     final response = await service.getRequest(ServiceContants.getEndpoint);
 
     if (response.statusCode == 200) {
-      return ApiResponseResult.success(Recipe(label: 'label', img: 'img'));
+      return ApiResponseResult.success(
+        Recipe(
+          uri: "",
+          label: "",
+          image: "",
+        ),
+      );
     } else {
       ApiResponseResult.error(Exception('Failed to load recipes'));
     }
-    return ApiResponseResult.success(Recipe(label: 'label', img: 'img'));
+    return ApiResponseResult.success(
+      Recipe(
+        uri: "",
+        label: "",
+        image: "",
+      ),
+    );
   }
 }

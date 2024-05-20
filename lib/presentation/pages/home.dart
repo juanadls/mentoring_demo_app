@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:mentoring_demo_app/data/services/network_service.dart';
-import 'package:mentoring_demo_app/data/services/service_constants/service_contants.dart';
-
+import '../../data/services/network_service.dart';
+import '../../data/services/service_constants/service_contants.dart';
 import '../../domain/manager/recipe_manager.dart';
 
 class Home extends StatelessWidget {
@@ -9,10 +8,11 @@ class Home extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final RecipeManager _manager = RecipeManager(
-        service: NetworkService(
-      ServiceContants.getEndpoint,
-    ));
+    final RecipeManager manager = RecipeManager(
+      service: NetworkService(
+        ServiceContants.getEndpoint,
+      ),
+    );
     return Scaffold(
       appBar: AppBar(
         title: const Text("Recipe App"),
@@ -21,7 +21,7 @@ class Home extends StatelessWidget {
         children: [
           ElevatedButton(
               onPressed: () {
-                _manager.getListRecipes();
+                manager.getListRecipes();
               },
               child: const Text(
                 "Hit Api",
