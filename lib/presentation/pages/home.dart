@@ -1,32 +1,42 @@
 import 'package:flutter/material.dart';
-import 'package:mentoring_demo_app/data/services/network_service.dart';
-import 'package:mentoring_demo_app/data/services/service_constants/service_contants.dart';
+import 'package:mentoring_demo_app/data/models/recipe.dart';
+import 'package:mentoring_demo_app/domain/repositories/recipe_repository_impl.dart';
+import 'package:mentoring_demo_app/presentation/widgets/recipe_card.dart';
 
-import '../../domain/manager/recipe_manager.dart';
-
-class Home extends StatelessWidget {
+class Home extends StatefulWidget {
   const Home({super.key});
 
   @override
+  State<Home> createState() => _HomeState();
+}
+
+class _HomeState extends State<Home> {
+  final List<Recipe> _recipes = [];
+  final RecipeRepositoryImpl _repositoryImpl = RecipeRepositoryImpl();
+  @override
   Widget build(BuildContext context) {
-    final RecipeManager _manager = RecipeManager(
-        service: NetworkService(
-      ServiceContants.getEndpoint,
-    ));
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Recipe App"),
+        title: const Text("Recipe App Sample"),
       ),
-      body: Column(
-        children: [
-          ElevatedButton(
-              onPressed: () {
-                _manager.getListRecipes();
+      body: FutureBuilder(
+        future: _repositoryImpl.obtainlist(),
+        builder: (BuildContext context, AsyncSnapshot snapshop) {
+          if (snapshop.connectionState == snapshop.connectionState) {
+            return ListView.builder(
+              itemCount: _recipes.length,
+              itemBuilder: (BuildContext context, int index) {
+                return RecipeCard(
+                  uri: _recipes[index].uri!,
+                  label: _recipes[index].label!,
+                  image: _recipes[index].image!,
+                );
               },
-              child: const Text(
-                "Hit Api",
-              ))
-        ],
+            );
+          } else {
+            return const CircularProgressIndicator();
+          }
+        },
       ),
     );
   }
